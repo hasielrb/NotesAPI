@@ -1,12 +1,13 @@
 from fastapi import FastAPI
-from routers import register
+from routers import register, login, notes
 
 app = FastAPI()
 
 # Routers
 app.include_router(register.router)
+app.include_router(login.router)
+app.include_router(notes.router)
 
-# EndPoints
-@app.get("/")
+@app.get("/", tags=["Root"])
 async def root():
-    return {"message": "Welcome to my api notes"}
+    return "Welcome to my API Notes"
